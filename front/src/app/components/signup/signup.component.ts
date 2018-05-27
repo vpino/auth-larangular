@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { JarwisService } from '../../services/jarwis.service';
+import { TokenService } from '../../services/token.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private Jarwis: JarwisService) { }
+    private Jarwis: JarwisService,
+    private Token: TokenService) { }
 
   ngOnInit() {
   }
@@ -34,6 +36,7 @@ export class SignupComponent implements OnInit {
   }
 
   handleResponse(data) {
+    this.Token.handle(data.access_token);
     this.router.navigateByUrl('/profile');
   }
 
